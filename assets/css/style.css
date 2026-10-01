@@ -66,19 +66,17 @@ body {
     box-sizing: border-box;
 }
 
-/* Hide scroll line / scrollbars for clean responsive look */
+/* Completely remove all scrollbar lines across all browsers */
+* {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 0px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 10px;
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1801,8 +1799,8 @@ img {
         font-size: 1.1rem;
         width: 100%;
         text-align: center;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid var(--border-color);
+        padding: 0.85rem 0;
+        border-bottom: none;
     }
 
     .nav-link::after {
@@ -1915,12 +1913,13 @@ img {
     }
 
     .hero-section {
-        padding: 2.5rem 0 3rem 0;
+        padding: 2.5rem 0 2rem 0;
         min-height: auto;
     }
 
     .services-quick-bar {
-        margin-top: 1.5rem;
+        margin-top: 0;
+        padding-top: 0;
     }
     
     .hero-stats {
