@@ -42,16 +42,13 @@
 }
 
 /* Reset & Base Styling */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 120px;
     font-size: 16px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
 }
 
 body {
@@ -59,7 +56,29 @@ body {
     color: var(--text-body);
     background-color: var(--bg-white);
     line-height: 1.6;
-    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+    position: relative;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Hide scroll line / scrollbars for clean responsive look */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 0px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1758,7 +1777,13 @@ img {
         transition: var(--transition-normal);
         box-shadow: var(--shadow-lg);
         overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
         z-index: 999;
+    }
+
+    .nav-menu::-webkit-scrollbar {
+        display: none;
     }
     
     .nav-menu.active {
