@@ -3,32 +3,84 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Mobile Navigation Toggle
+    // 1. Mobile Navigation Toggle & Backdrop Management
     const mobileToggle = document.getElementById('mobileToggle');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
+    // Create backdrop element dynamically if not present
+    let navBackdrop = document.querySelector('.nav-backdrop');
+    if (!navBackdrop) {
+        navBackdrop = document.createElement('div');
+        navBackdrop.className = 'nav-backdrop';
+        document.body.appendChild(navBackdrop);
+    }
+
+    const openMobileMenu = () => {
+        if (navMenu) {
+            navMenu.classList.add('active');
+            if (navBackdrop) navBackdrop.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (mobileToggle && mobileToggle.querySelector('i')) {
+                mobileToggle.querySelector('i').className = 'fa-solid fa-xmark';
+            }
+        }
+    };
+
+    const closeMobileMenu = () => {
+        if (navMenu) {
+            navMenu.classList.remove('active');
+            if (navBackdrop) navBackdrop.classList.remove('active');
+            document.body.style.overflow = '';
+            if (mobileToggle && mobileToggle.querySelector('i')) {
+                mobileToggle.querySelector('i').className = 'fa-solid fa-bars';
+            }
+        }
+    };
+
     if (mobileToggle && navMenu) {
-        mobileToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const icon = mobileToggle.querySelector('i');
+        mobileToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             if (navMenu.classList.contains('active')) {
-                icon.className = 'fa-solid fa-xmark';
-                document.body.style.overflow = 'hidden';
+                closeMobileMenu();
             } else {
-                icon.className = 'fa-solid fa-bars';
-                document.body.style.overflow = '';
+                openMobileMenu();
             }
         });
 
+        if (navBackdrop) {
+            navBackdrop.addEventListener('click', closeMobileMenu);
+        }
+
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+        }
+
         navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                document.body.style.overflow = '';
-                if (mobileToggle.querySelector('i')) {
-                    mobileToggle.querySelector('i').className = 'fa-solid fa-bars';
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (!href) return;
+
+                closeMobileMenu();
+
+                if (href.startsWith('#')) {
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else if (href !== '#' && !href.startsWith('javascript:')) {
+                    e.preventDefault();
+                    window.location.href = href;
                 }
             });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
         });
     }
 
@@ -74,144 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Modal Booking System
-    const bookingModal = document.getElementById('bookingModal');
-    const openBookModalBtn = document.getElementById('openBookModalBtn');
-    const closeBookModalBtn = document.getElementById('closeBookModalBtn');
-    const openTriggers = document.querySelectorAll('.open-booking-trigger');
-    const modalDepartment = document.getElementById('modalDepartment');
-    const modalDoctor = document.getElementById('modalDoctor');
-
-    const openModal = () => {
-        if (bookingModal) {
-            bookingModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            // Set default date to tomorrow
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            const dateInput = document.getElementById('modalDate');
-            if (dateInput && !dateInput.value) {
-                dateInput.value = tomorrow.toISOString().split('T')[0];
-            }
-        }
-    };
-
-    const closeModal = () => {
-        if (bookingModal) {
-            bookingModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    };
-
-    if (openBookModalBtn) {
-        openBookModalBtn.addEventListener('click', openModal);
-    }
-
-    if (closeBookModalBtn) {
-        closeBookModalBtn.addEventListener('click', closeModal);
-    }
-
-    if (bookingModal) {
-        bookingModal.addEventListener('click', (e) => {
-            if (e.target === bookingModal) {
-                closeModal();
-            }
-        });
-    }
-
-    // Auto-select doctor/package when clicking trigger buttons
-    openTriggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-            openModal();
-            
-            const doctorName = trigger.getAttribute('data-doctor');
-            const packageName = trigger.getAttribute('data-package');
-
-            if (doctorName && modalDoctor) {
-                for (let option of modalDoctor.options) {
-                    if (option.value.includes(doctorName)) {
-                        modalDoctor.value = option.value;
-                        break;
-                    }
-                }
-            }
-
-            if (packageName && modalNotes) {
-                const notes = document.getElementById('modalNotes');
-                if (notes) {
-                    notes.value = `Interested in ${packageName}`;
-                }
-            }
-        });
-    });
-
-    // 5. Form Submissions (Hero & Modal Forms)
-    const toastNotification = document.getElementById('toastNotification');
-    const toastTitle = document.getElementById('toastTitle');
-    const toastMessage = document.getElementById('toastMessage');
-    const toastClose = document.getElementById('toastClose');
-
-    const showToast = (title, message) => {
-        if (toastNotification) {
-            toastTitle.innerText = title;
-            toastMessage.innerText = message;
-            toastNotification.classList.add('active');
-
-            setTimeout(() => {
-                toastNotification.classList.remove('active');
-            }, 6000);
-        }
-    };
-
-    if (toastClose) {
-        toastClose.addEventListener('click', () => {
-            toastNotification.classList.remove('active');
-        });
-    }
-
-    const generateRefId = () => {
-        const randNum = Math.floor(1000 + Math.random() * 9000);
-        return `#OMG-${randNum}`;
-    };
-
-    // Hero Quick Book Form
-    const heroQuickBookForm = document.getElementById('heroQuickBookForm');
-    if (heroQuickBookForm) {
-        heroQuickBookForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('heroPatientName').value;
-            const refId = generateRefId();
-
-            showToast(
-                `Appointment Confirmed for ${name}!`,
-                `Reference ID: ${refId}. Our front desk at Choppadandi Road will call you to confirm your slot.`
-            );
-
-            heroQuickBookForm.reset();
-        });
-    }
-
-    // Modal Booking Form
-    const modalBookingForm = document.getElementById('modalBookingForm');
-    if (modalBookingForm) {
-        modalBookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('modalPatientName').value;
-            const refId = generateRefId();
-
-            closeModal();
-
-            showToast(
-                `Consultation Booked for ${name}!`,
-                `Reference ID: ${refId}. We look forward to providing you top care at Omega Sunnidhi Hospital.`
-            );
-
-            modalBookingForm.reset();
-        });
-    }
-
-    // 6. FAQ Accordion Toggle
+    // 4. FAQ Accordion Toggle
     const faqQuestions = document.querySelectorAll('.faq-question');
     faqQuestions.forEach(question => {
         question.addEventListener('click', () => {
@@ -250,4 +165,54 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         revealElements.forEach(el => el.classList.add('in-view'));
     }
+
+    // 8. Poster Lightbox Modal Handler
+    const lightboxModal = document.getElementById('posterLightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxTriggers = document.querySelectorAll('.open-lightbox-trigger');
+
+    const openLightbox = (imgSrc, captionText) => {
+        if (lightboxModal && lightboxImg) {
+            lightboxImg.src = imgSrc;
+            if (lightboxCaption) lightboxCaption.innerText = captionText || 'Official Clinical Program Poster - Omega Sunnidhi Hospital';
+            lightboxModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    };
+
+    const closeLightbox = () => {
+        if (lightboxModal) {
+            lightboxModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    };
+
+    lightboxTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            const src = trigger.getAttribute('data-img') || trigger.querySelector('img')?.src;
+            const caption = trigger.getAttribute('data-caption') || trigger.querySelector('img')?.alt;
+            if (src) openLightbox(src, caption);
+        });
+    });
+
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+    }
+
+    if (lightboxModal) {
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+                closeLightbox();
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    }
 });
+

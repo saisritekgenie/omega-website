@@ -53,6 +53,12 @@
             </a>
 
             <nav class="nav-menu" id="nav-menu">
+                <div class="mobile-menu-header">
+                    <img src="assets/images/logo.png" alt="Omega Sunnidhi Hospital" class="mobile-menu-logo">
+                    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close Menu">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link active">Home</a></li>
                     <li><a href="about.html" class="nav-link">About Us</a></li>
@@ -63,12 +69,14 @@
                     <li><a href="faq.html" class="nav-link">FAQ</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
+                <div class="mobile-menu-footer">
+                    <a href="tel:+917947117570" class="mobile-emergency-call">
+                        <i class="fa-solid fa-phone-volume"></i> Emergency: +91 79471 17570
+                    </a>
+                </div>
             </nav>
 
             <div class="nav-cta-group">
-                <button class="btn btn-primary" id="openBookModalBtn">
-                    <i class="fa-solid fa-calendar-check"></i> Book Appointment
-                </button>
                 <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -96,9 +104,9 @@
                         expertise, cutting-edge diagnostic scanners, and 24/7 critical care with compassion and trust.
                     </p>
                     <div class="hero-actions">
-                        <button class="btn btn-lg btn-primary open-booking-trigger">
-                            <i class="fa-solid fa-calendar-plus"></i> Book Consultation
-                        </button>
+                        <a href="contact.html" class="btn btn-lg btn-primary">
+                            <i class="fa-solid fa-location-dot"></i> Contact & Location
+                        </a>
                         <a href="tel:+917947117570" class="btn btn-lg btn-secondary">
                             <i class="fa-solid fa-truck-medical"></i> 24/7 Emergency Care
                         </a>
@@ -121,57 +129,6 @@
                             <div class="stat-label">Healed Patients</div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Quick Appointment Widget -->
-                <div class="hero-widget-card">
-                    <div class="widget-header">
-                        <h3><i class="fa-solid fa-user-doctor"></i> Instant Appointment</h3>
-                        <p>Book a slot with our leading specialists</p>
-                    </div>
-                    <form id="heroQuickBookForm" class="quick-form">
-                        <div class="form-group">
-                            <label for="heroPatientName">Patient Full Name</label>
-                            <div class="input-icon-wrapper">
-                                <i class="fa-solid fa-user"></i>
-                                <input type="text" id="heroPatientName" placeholder="e.g. Rajesh Kumar" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="heroPhone">Mobile Number</label>
-                            <div class="input-icon-wrapper">
-                                <i class="fa-solid fa-phone"></i>
-                                <input type="tel" id="heroPhone" placeholder="10-digit mobile number" required
-                                    pattern="[0-9]{10}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="heroDepartment">Select Speciality</label>
-                            <div class="input-icon-wrapper">
-                                <i class="fa-solid fa-stethoscopes"></i>
-                                <select id="heroDepartment" required>
-                                    <option value="" disabled selected>Choose Speciality</option>
-                                    <option value="Cardiology">Cardiology (Heart Care)</option>
-                                    <option value="Orthopedics">Orthopedics & Joint Care</option>
-                                    <option value="Neurology">Neurology & Brain Care</option>
-                                    <option value="General Surgery">General & Laparoscopic Surgery</option>
-                                    <option value="Gynecology">Gynecology & Obstetrics</option>
-                                    <option value="Pediatrics">Pediatrics & Neonatology</option>
-                                    <option value="Critical Care">ICU & Emergency Care</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="heroDate">Preferred Date</label>
-                            <div class="input-icon-wrapper">
-                                <i class="fa-solid fa-calendar-day"></i>
-                                <input type="date" id="heroDate" required>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block btn-pulse">
-                            Confirm Appointment <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -219,12 +176,13 @@
             <div class="about-grid reveal">
                 <div class="about-image-wrapper">
                     <div class="image-frame">
-                        <img src="assets/images/hero-hospital.jpg" alt="Omega Sunnidhi Hospital Karimnagar"
+                        <img src="assets/images/omega-hospital-building.jpg" alt="Omega Sunnidhi Multi Speciality Hospital Karimnagar Facade"
                             class="about-main-img">
                         <div class="experience-card">
                             <span class="exp-number">10+</span>
                             <span class="exp-text">Years of Trusted Healing in Karimnagar</span>
                         </div>
+
                     </div>
                 </div>
                 <div class="about-content">
@@ -373,87 +331,192 @@
             <!-- Doctor Department Filter -->
             <div class="filter-tabs">
                 <button class="filter-btn active" data-filter="all">All Specialists</button>
-                <button class="filter-btn" data-filter="cardiology">Cardiology</button>
+                <button class="filter-btn" data-filter="surgery">General & Laparoscopy</button>
+                <button class="filter-btn" data-filter="gynecology">Gynecology & OBG</button>
+                <button class="filter-btn" data-filter="urology">Urology & Kidney</button>
                 <button class="filter-btn" data-filter="orthopedics">Orthopedics</button>
-                <button class="filter-btn" data-filter="surgery">General Surgery</button>
-                <button class="filter-btn" data-filter="gynecology">Gynecology</button>
+                <button class="filter-btn" data-filter="general-medicine">General Medicine</button>
             </div>
 
             <div class="doctors-grid">
-                <!-- Doctor Card 1 -->
-                <div class="doctor-card" data-category="cardiology">
-                    <div class="doctor-img-wrapper">
-                        <img src="assets/images/doctor-team.jpg" alt="Dr. K. Srinivas - Senior Cardiologist"
-                            class="doctor-img">
-                        <div class="dept-badge">Cardiology</div>
-                    </div>
-                    <div class="doctor-info">
-                        <h3>Dr. K. Srinivas</h3>
-                        <span class="doctor-qual">MD, DM (Cardiology) - Senior Consultant</span>
-                        <p class="doctor-exp"><i class="fa-solid fa-award"></i> 15+ Years Experience</p>
-                        <p class="doctor-desc">Specialized in interventional cardiology, heart failure management, and
-                            preventive heart health.</p>
-                        <button class="btn btn-outline btn-block open-booking-trigger" data-doctor="Dr. K. Srinivas">
-                            Book Consultation
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Doctor Card 2 -->
-                <div class="doctor-card" data-category="orthopedics">
-                    <div class="doctor-img-wrapper">
-                        <img src="assets/images/doctor-team.jpg" alt="Dr. R. Rajender - Orthopedic Surgeon"
-                            class="doctor-img">
-                        <div class="dept-badge">Orthopedics</div>
-                    </div>
-                    <div class="doctor-info">
-                        <h3>Dr. R. Rajender</h3>
-                        <span class="doctor-qual">MS (Ortho), Fellowship in Joint Replacement</span>
-                        <p class="doctor-exp"><i class="fa-solid fa-award"></i> 12+ Years Experience</p>
-                        <p class="doctor-desc">Expert in total knee & hip replacement, complex trauma surgery, and
-                            sports injuries.</p>
-                        <button class="btn btn-outline btn-block open-booking-trigger" data-doctor="Dr. R. Rajender">
-                            Book Consultation
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Doctor Card 3 -->
+                <!-- Doctor Card 1: Dr. Sagar Koppi MS -->
                 <div class="doctor-card" data-category="surgery">
                     <div class="doctor-img-wrapper">
-                        <img src="assets/images/doctor-team.jpg" alt="Dr. S. Prashanth - General Surgeon"
-                            class="doctor-img">
-                        <div class="dept-badge">General Surgery</div>
+                        <img src="assets/images/dr-sagar-koppi.jpg" alt="Dr. Sagar Koppi MS - General Laparoscopic and Laser Surgeon"
+                            class="doctor-img" style="object-position: top center;">
+                        <div class="dept-badge">General & Laparoscopy</div>
                     </div>
                     <div class="doctor-info">
-                        <h3>Dr. S. Prashanth</h3>
-                        <span class="doctor-qual">MS (Gen Surgery), FMAS (Laparoscopy)</span>
-                        <p class="doctor-exp"><i class="fa-solid fa-award"></i> 10+ Years Experience</p>
-                        <p class="doctor-desc">Specialist in laparoscopic gallbladder, hernia repair, laser treatments,
-                            and acute trauma.</p>
-                        <button class="btn btn-outline btn-block open-booking-trigger" data-doctor="Dr. S. Prashanth">
-                            Book Consultation
-                        </button>
+                        <h3>Dr. Sagar Koppi <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted);">MS</span></h3>
+                        <span class="doctor-qual">General Laparoscopic and Laser Surgeon</span>
+                        <p class="doctor-exp"><i class="fa-solid fa-award"></i> Specialist Surgeon • Karimnagar</p>
+                        <p class="doctor-desc">Expert in advanced laparoscopic appendix surgery, hernia repair, gallbladder surgery, and precision laser treatments with rapid recovery.</p>
+                        <a href="tel:+917947117570" class="btn btn-outline btn-block">
+                            <i class="fa-solid fa-phone"></i> Direct Call Specialist
+                        </a>
                     </div>
                 </div>
 
-                <!-- Doctor Card 4 -->
+                <!-- Doctor Card 2: Dr. Manikyam Sowmya -->
                 <div class="doctor-card" data-category="gynecology">
                     <div class="doctor-img-wrapper">
-                        <img src="assets/images/doctor-team.jpg"
-                            alt="Dr. Lakshmi Sunnidhi - Obstetrician & Gynecologist" class="doctor-img">
-                        <div class="dept-badge">Gynecology</div>
+                        <img src="assets/images/dr-manikyam-sowmya.jpg" alt="Dr. Manikyam Sowmya - Consultant Obstetrician & Gynecologist"
+                            class="doctor-img" style="object-position: top center;">
+                        <div class="dept-badge">Gynecology & Infertility</div>
                     </div>
                     <div class="doctor-info">
-                        <h3>Dr. Lakshmi Sunnidhi</h3>
-                        <span class="doctor-qual">MD (OBG), DGO - High Risk Pregnancy Expert</span>
-                        <p class="doctor-exp"><i class="fa-solid fa-award"></i> 14+ Years Experience</p>
-                        <p class="doctor-desc">Pioneer in painless labor, high-risk pregnancy management, and
-                            laparoscopic gynecology.</p>
-                        <button class="btn btn-outline btn-block open-booking-trigger"
-                            data-doctor="Dr. Lakshmi Sunnidhi">
-                            Book Consultation
-                        </button>
+                        <h3>Dr. Manikyam Sowmya</h3>
+                        <span class="doctor-qual">MBBS, M.S - OBG & Gynecology</span>
+                        <p class="doctor-exp"><i class="fa-solid fa-award"></i> Obstetrician & Infertility Specialist</p>
+                        <p class="doctor-desc">Specialized in safe delivery, high-risk pregnancy management, comprehensive prenatal care, mother & newborn wellness, and laparoscopic gynecology.</p>
+                        <a href="tel:+917947117570" class="btn btn-outline btn-block">
+                            <i class="fa-solid fa-phone"></i> Direct Call Specialist
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Doctor Card 3: Dr. Vamshi Chandra B -->
+                <div class="doctor-card" data-category="urology">
+                    <div class="doctor-img-wrapper">
+                        <img src="assets/images/dr-vamshi-chandra.jpg" alt="Dr. Vamshi Chandra B - Consultant Urologist"
+                            class="doctor-img" style="object-position: top center;">
+                        <div class="dept-badge">Urology & Kidney Care</div>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Vamshi Chandra B</h3>
+                        <span class="doctor-qual">MS, MCh (Urology) - Consultant Urologist</span>
+                        <p class="doctor-exp"><i class="fa-solid fa-award"></i> Kidney Stone & Prostate Specialist</p>
+                        <p class="doctor-desc">Specialist in laser kidney stone treatment, endoscopic urology, prostate surgeries, urinary tract infections, and male reproductive health.</p>
+                        <a href="tel:+917947117570" class="btn btn-outline btn-block">
+                            <i class="fa-solid fa-phone"></i> Direct Call Specialist
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Doctor Card 4: Dr. K. Gattu Naresh -->
+                <div class="doctor-card" data-category="orthopedics">
+                    <div class="doctor-img-wrapper">
+                        <img src="assets/images/dr-k-srinivas.jpg" alt="Dr. K. Gattu Naresh, MS (Ortho) - Senior Orthopedic & Joint Replacement Surgeon"
+                            class="doctor-img" style="object-position: top center;">
+                        <div class="dept-badge">Orthopedics & Joint Care</div>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. K. Gattu Naresh <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted);">MS (Ortho)</span></h3>
+                        <span class="doctor-qual">Senior Orthopedic & Joint Replacement Surgeon</span>
+                        <p class="doctor-exp"><i class="fa-solid fa-award"></i> Joint Replacement & Trauma Specialist</p>
+                        <p class="doctor-desc">Expert in total knee & hip replacement, arthroscopic surgery, complex fracture trauma, and pediatric orthopedic care.</p>
+                        <a href="tel:+917947117570" class="btn btn-outline btn-block">
+                            <i class="fa-solid fa-phone"></i> Direct Call Specialist
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Doctor Card 5: Dr. N. Ravi Kumar -->
+                <div class="doctor-card" data-category="general-medicine">
+                    <div class="doctor-img-wrapper">
+                        <img src="assets/images/dr-r-rajender.jpg" alt="Dr. N. Ravi Kumar, MD - Senior Consultant Physician & Intensive Care Specialist"
+                            class="doctor-img" style="object-position: top center;">
+                        <div class="dept-badge">General Medicine & Critical Care</div>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. N. Ravi Kumar <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted);">MD</span></h3>
+                        <span class="doctor-qual">Senior Consultant Physician & Critical Care Specialist</span>
+                        <p class="doctor-exp"><i class="fa-solid fa-award"></i> Physician & Intensive Care Expert</p>
+                        <p class="doctor-desc">Specialized in diabetes management, hypertension, infectious disease care, internal medicine, and critical ICU care.</p>
+                        <a href="tel:+917947117570" class="btn btn-outline btn-block">
+                            <i class="fa-solid fa-phone"></i> Direct Call Specialist
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clinical Programs & Awareness Posters -->
+    <section class="section posters-section bg-light" id="campaigns">
+        <div class="container">
+            <div class="section-header text-center reveal">
+                <span class="section-tag"><i class="fa-solid fa-bullhorn"></i> Specialized Health Programs</span>
+                <h2 class="section-title">Clinical Care Highlights & Awareness</h2>
+                <p class="section-subtitle">Official patient awareness and specialized clinical procedures at Omega Sunnidhi Hospital.</p>
+            </div>
+
+            <div class="posters-grid">
+                <!-- Poster Card 1: Dr. Manikyam Sowmya (Maternity Care) -->
+                <div class="poster-card reveal">
+                    <div class="poster-media-box open-lightbox-trigger" data-img="assets/images/poster-dr-manikyam-sowmya.jpg" data-caption="Safe Motherhood & Maternity Care Program - Dr. Manikyam Sowmya (Omega Sunnidhi Hospital, Karimnagar)">
+                        <img src="assets/images/poster-dr-manikyam-sowmya.jpg" alt="Maternity & Pregnancy Care Campaign - Dr. Manikyam Sowmya" class="poster-media-img" loading="lazy">
+                        <div class="poster-hover-badge">
+                            <i class="fa-solid fa-expand"></i> View Full Poster
+                        </div>
+                    </div>
+                    <div class="poster-body">
+                        <span class="poster-tag"><i class="fa-solid fa-baby"></i> Maternity & Women's Health</span>
+                        <h3 class="poster-title">Safe Motherhood & Comprehensive Pregnancy Care</h3>
+                        <div class="poster-doctor-lead">Dr. Manikyam Sowmya</div>
+                        <div class="poster-doctor-cred">MBBS, M.S - OBG & Gynecology | Consultant Obstetrician, Laparoscopic Surgeon & Infertility Specialist</div>
+                        
+                        <div class="poster-telugu-highlight">
+                            <i class="fa-solid fa-quote-left"></i> "మీ మాతృత్వ ప్రయాణం మా బాధ్యత. సురక్షిత గర్భధారణ, ఆరోగ్యవంతమైన శిశువు."
+                        </div>
+
+                        <ul class="poster-feature-list">
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>నిపుణులైన ప్రసూతి వైద్యులు:</strong> Expert Obstetricians & high-risk pregnancy specialists.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>సమగ్ర గర్భధారణ సంరక్షణ:</strong> Complete antenatal tracking, scans & wellness tests.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>సురక్షిత ప్రసవ సేవలు:</strong> 24/7 labor suites, painless delivery & emergency C-section.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>తల్లి & నవజాత శిశువు ప్రత్యేక సంరక్షణ:</strong> Dedicated Neonatal Care (NICU) & pediatric support.</li>
+                        </ul>
+
+                        <div class="poster-actions">
+                            <button class="btn btn-outline open-lightbox-trigger" data-img="assets/images/poster-dr-manikyam-sowmya.jpg" data-caption="Maternity & Pregnancy Care - Dr. Manikyam Sowmya">
+                                <i class="fa-solid fa-image"></i> View Poster
+                            </button>
+                            <a href="contact.html" class="btn btn-primary">
+                                <i class="fa-solid fa-user-doctor"></i> Contact Doctor
+                            </a>
+                            <a href="tel:+918886510108" class="btn btn-secondary">
+                                <i class="fa-solid fa-phone"></i> 88865 10108
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poster Card 2: Dr. Sagar Koppi (Laparoscopic Surgery) -->
+                <div class="poster-card reveal">
+                    <div class="poster-media-box open-lightbox-trigger" data-img="assets/images/poster-dr-sagar-koppi.jpg" data-caption="Advanced Laparoscopic Appendix Surgery - Dr. Sagar Koppi MS (Omega Sunnidhi Hospital, Karimnagar)">
+                        <img src="assets/images/poster-dr-sagar-koppi.jpg" alt="Laparoscopic Appendix Surgery Campaign - Dr. Sagar Koppi MS" class="poster-media-img" loading="lazy">
+                        <div class="poster-hover-badge">
+                            <i class="fa-solid fa-expand"></i> View Full Poster
+                        </div>
+                    </div>
+                    <div class="poster-body">
+                        <span class="poster-tag"><i class="fa-solid fa-stethoscope"></i> Advanced Laparoscopic Surgery</span>
+                        <h3 class="poster-title">Minimally Invasive Appendix & Laser Surgery</h3>
+                        <div class="poster-doctor-lead">Dr. Sagar Koppi MS</div>
+                        <div class="poster-doctor-cred">General Laparoscopic and Laser Surgeon</div>
+
+                        <div class="poster-telugu-highlight">
+                            <i class="fa-solid fa-quote-left"></i> "లాపరోస్కోపిక్ అపెండిక్స్ సర్జరీ ఆధునిక చికిత్స విధానం - వాపు వచ్చిన అపెండిక్స్ను తొలగించే సురక్షితమైన చిన్న కోతలతో చేసే సర్జరీ, తద్వారా త్వరగా కోలుకుంటారు."
+                        </div>
+
+                        <ul class="poster-feature-list">
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>చిన్న కోతలతో చేసే సర్జరీ:</strong> Keyhole minimally invasive surgery with minimal blood loss.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>త్వరగా కోలుకుంటారు:</strong> Reduced pain, shorter hospital stay & fast resumption of daily routine.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>అత్యాధునిక చికిత్స:</strong> Advanced laparoscopic appendix, gallbladder stones & hernia repair.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>Laser General Surgery:</strong> Painless laser proctology procedures with high safety standards.</li>
+                        </ul>
+
+                        <div class="poster-actions">
+                            <button class="btn btn-outline open-lightbox-trigger" data-img="assets/images/poster-dr-sagar-koppi.jpg" data-caption="Laparoscopic Appendix Surgery - Dr. Sagar Koppi MS">
+                                <i class="fa-solid fa-image"></i> View Poster
+                            </button>
+                            <a href="contact.html" class="btn btn-primary">
+                                <i class="fa-solid fa-user-doctor"></i> Contact Doctor
+                            </a>
+                            <a href="tel:+919859111444" class="btn btn-secondary">
+                                <i class="fa-solid fa-phone"></i> 9859 111 444
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -512,6 +575,47 @@
         </div>
     </section>
 
+    <!-- Hospital Video Showcase Section -->
+    <section class="section video-section bg-dark text-white" id="video-tour" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; padding: 4rem 0;">
+        <div class="container">
+            <div class="section-header text-center reveal" style="margin-bottom: 2.5rem;">
+                <span class="section-tag" style="background: rgba(13, 148, 136, 0.2); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.3);"><i class="fa-solid fa-circle-play"></i> Video Walkthrough</span>
+                <h2 class="section-title" style="color: #ffffff;">Experience Omega Sunnidhi Hospital</h2>
+                <p class="section-subtitle" style="color: #94a3b8;">Take a virtual video tour of our state-of-the-art medical infrastructure, advanced facilities, and specialist care in Karimnagar.</p>
+            </div>
+
+            <div class="video-grid reveal">
+                <div class="video-wrapper" style="position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); border: 2px solid rgba(255, 255, 255, 0.15); background: #000;">
+                    <video controls playsinline preload="metadata" poster="assets/images/omega-hospital-building.jpg" style="width: 100%; height: 100%; min-height: 280px; max-height: 420px; object-fit: cover; display: block;">
+                        <source src="assets/images/omega-1.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video playback.
+                    </video>
+                </div>
+                <div class="video-content">
+                    <span class="section-tag" style="background: rgba(0, 114, 188, 0.2); color: #38bdf8; margin-bottom: 1rem; display: inline-block;">Official Hospital Video</span>
+                    <h3 style="font-size: 1.8rem; font-family: var(--font-heading); color: #ffffff; margin-bottom: 1rem;">Comprehensive Medical Infrastructure & Patient Care</h3>
+                    <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                        Watch our official walkthrough highlighting our advanced modular operation theaters, 24/7 ICU & NICU setups, high-precision CT scanner units, emergency casualty wards, and compassionate nursing support.
+                    </p>
+                    <ul class="video-highlights" style="list-style: none; padding: 0; margin: 0 0 2rem 0; display: flex; flex-direction: column; gap: 0.85rem;">
+                        <li style="display: flex; align-items: center; gap: 0.75rem; font-weight: 600; color: #f1f5f9;"><i class="fa-solid fa-circle-check" style="color: #2dd4bf; font-size: 1.1rem;"></i> 24/7 Emergency Casualty & Trauma Care Unit</li>
+                        <li style="display: flex; align-items: center; gap: 0.75rem; font-weight: 600; color: #f1f5f9;"><i class="fa-solid fa-circle-check" style="color: #2dd4bf; font-size: 1.1rem;"></i> Advanced CT Scan & Digital Radiology Diagnostics</li>
+                        <li style="display: flex; align-items: center; gap: 0.75rem; font-weight: 600; color: #f1f5f9;"><i class="fa-solid fa-circle-check" style="color: #2dd4bf; font-size: 1.1rem;"></i> Sterile HEPA-Filtered Modular Operation Theatres</li>
+                        <li style="display: flex; align-items: center; gap: 0.75rem; font-weight: 600; color: #f1f5f9;"><i class="fa-solid fa-circle-check" style="color: #2dd4bf; font-size: 1.1rem;"></i> Patient-Centric Inpatient Deluxe & General Wards</li>
+                    </ul>
+                    <div class="video-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="contact.html" class="btn btn-primary">
+                            <i class="fa-solid fa-hospital"></i> Enquire Scan
+                        </a>
+                        <a href="tel:+918886510108" class="btn btn-outline" style="border-color: rgba(255, 255, 255, 0.3); color: #ffffff;">
+                            <i class="fa-solid fa-phone"></i> Emergency: 88865 10108
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Health Packages Section -->
     <section class="section packages-section" id="packages">
         <div class="container">
@@ -538,10 +642,9 @@
                         <li><i class="fa-solid fa-check"></i> ECG & Chest X-Ray</li>
                         <li><i class="fa-solid fa-check"></i> Physician Consultation</li>
                     </ul>
-                    <button class="btn btn-secondary btn-block open-booking-trigger"
-                        data-package="Executive Master Health Checkup">
-                        Book Health Package
-                    </button>
+                    <a href="contact.html" class="btn btn-secondary btn-block">
+                        <i class="fa-solid fa-phone"></i> Enquire Package
+                    </a>
                 </div>
 
                 <!-- Package 2 (Featured) -->
@@ -559,10 +662,9 @@
                         <li><i class="fa-solid fa-check"></i> Serum Electrolytes</li>
                         <li><i class="fa-solid fa-check"></i> Senior Cardiologist Consultation</li>
                     </ul>
-                    <button class="btn btn-primary btn-block open-booking-trigger"
-                        data-package="Comprehensive Cardiac Package">
-                        Book Health Package
-                    </button>
+                    <a href="contact.html" class="btn btn-primary btn-block">
+                        <i class="fa-solid fa-phone"></i> Enquire Package
+                    </a>
                 </div>
 
                 <!-- Package 3 -->
@@ -578,10 +680,9 @@
                         <li><i class="fa-solid fa-check"></i> Urine Routine & Pap Smear</li>
                         <li><i class="fa-solid fa-check"></i> Senior Gynecologist Consultation</li>
                     </ul>
-                    <button class="btn btn-secondary btn-block open-booking-trigger"
-                        data-package="Women's Wellness Package">
-                        Book Health Package
-                    </button>
+                    <a href="contact.html" class="btn btn-secondary btn-block">
+                        <i class="fa-solid fa-phone"></i> Enquire Package
+                    </a>
                 </div>
             </div>
         </div>
@@ -638,7 +739,7 @@
                             class="fa-solid fa-star"></i>
                     </div>
                     <p class="review-text">
-                        "Dr. Rajender performed knee surgery for my mother. She is walking without pain now within
+                        "Dr. Gattu Naresh performed knee surgery for my mother. She is walking without pain now within
                         weeks. Grateful to the whole medical team at Omega Sunnidhi."
                     </p>
                     <div class="reviewer">
@@ -672,11 +773,11 @@
 
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
-                        <span><i class="fa-solid fa-circle-question"></i> How do I book an appointment with a specialist doctor?</span>
+                        <span><i class="fa-solid fa-circle-question"></i> How do I consult with a specialist doctor?</span>
                         <i class="fa-solid fa-chevron-down faq-icon"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>You can book directly using our instant appointment form above, or call our hospital helpline at <strong>+91 79471 17570</strong>. Our front desk will confirm your preferred specialist and time slot.</p>
+                        <p>You can visit our hospital directly at Choppadandi Road, Karimnagar, or call our 24/7 helpline at <strong>+91 79471 17570</strong>. Our front desk will assist you with doctor availability and consultation schedules.</p>
                     </div>
                 </div>
 
@@ -746,7 +847,6 @@
                             <div>
                                 <h4>Email Enquiries</h4>
                                 <p>info@omegasunnidhihospital.com</p>
-                                <p>appointments@omegasunnidhihospital.com</p>
                             </div>
                         </div>
 
@@ -825,7 +925,8 @@
                     <h4>Address & Contact</h4>
                     <p><i class="fa-solid fa-location-dot"></i> Mancherial Chowrastha, Choppadandi Road, Karimnagar,
                         Telangana.</p>
-                    <p><i class="fa-solid fa-phone"></i> Emergency: +91 79471 17570</p>
+                    <p><i class="fa-solid fa-phone"></i> Helplines: 88865 10108 / 9859 111 444</p>
+                    <p><i class="fa-solid fa-truck-medical"></i> 24/7 Casualty: +91 79471 17570</p>
                     <p><i class="fa-solid fa-envelope"></i> info@omegasunnidhihospital.com</p>
                 </div>
             </div>
@@ -840,92 +941,6 @@
         </div>
     </footer>
 
-    <!-- Booking Modal -->
-    <div class="modal-backdrop" id="bookingModal">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h3><i class="fa-solid fa-calendar-check"></i> Book Consultation</h3>
-                <button class="modal-close" id="closeBookModalBtn">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="modalBookingForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="modalPatientName">Full Name *</label>
-                            <input type="text" id="modalPatientName" placeholder="Enter patient name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="modalPhone">Mobile Number *</label>
-                            <input type="tel" id="modalPhone" placeholder="10-digit mobile number" required
-                                pattern="[0-9]{10}">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="modalDepartment">Department / Speciality *</label>
-                            <select id="modalDepartment" required>
-                                <option value="" disabled selected>Select Department</option>
-                                <option value="Cardiology">Cardiology (Heart Care)</option>
-                                <option value="Orthopedics">Orthopedics & Joint Care</option>
-                                <option value="General Surgery">General & Laparoscopic Surgery</option>
-                                <option value="Gynecology">Gynecology & Obstetrics</option>
-                                <option value="Pediatrics">Pediatrics & Child Care</option>
-                                <option value="Radiology">Diagnostic Scanner / Imaging</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="modalDoctor">Preferred Doctor (Optional)</label>
-                            <select id="modalDoctor">
-                                <option value="Any Specialist Doctor">Any Available Specialist Doctor</option>
-                                <option value="Dr. K. Srinivas">Dr. K. Srinivas (Cardiology)</option>
-                                <option value="Dr. R. Rajender">Dr. R. Rajender (Orthopedics)</option>
-                                <option value="Dr. S. Prashanth">Dr. S. Prashanth (Surgery)</option>
-                                <option value="Dr. Lakshmi Sunnidhi">Dr. Lakshmi Sunnidhi (Gynecology)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="modalDate">Appointment Date *</label>
-                            <input type="date" id="modalDate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="modalTime">Time Slot *</label>
-                            <select id="modalTime" required>
-                                <option value="Morning Slot (10:00 AM - 01:00 PM)">Morning Slot (10:00 AM - 01:00 PM)
-                                </option>
-                                <option value="Evening Slot (05:00 PM - 08:30 PM)">Evening Slot (05:00 PM - 08:30 PM)
-                                </option>
-                                <option value="Emergency Care (Immediate)">Emergency Care (Immediate)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="modalNotes">Symptoms or Additional Details</label>
-                        <textarea id="modalNotes" rows="3" placeholder="Briefly describe health concern..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-block btn-lg">
-                        Submit & Confirm Booking <i class="fa-solid fa-check-circle"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Booking Confirmation Toast Notification -->
-    <div class="toast-notification" id="toastNotification">
-        <div class="toast-icon"><i class="fa-solid fa-circle-check"></i></div>
-        <div class="toast-content">
-            <h4 id="toastTitle">Appointment Confirmed!</h4>
-            <p id="toastMessage">Your reference ID is #OMG-8492. Our hospital desk will call you shortly.</p>
-        </div>
-        <button class="toast-close" id="toastClose">&times;</button>
-    </div>
-
     <!-- Floating Quick Call / WhatsApp Bar -->
     <div class="floating-contact">
         <a href="https://wa.me/917947117570" target="_blank" class="float-btn float-whatsapp" aria-label="WhatsApp Us">
@@ -934,6 +949,15 @@
         <a href="tel:+917947117570" class="float-btn float-phone" aria-label="Call Emergency">
             <i class="fa-solid fa-phone"></i>
         </a>
+    </div>
+
+    <!-- Lightbox Modal for Full Poster Preview -->
+    <div class="lightbox-modal" id="posterLightboxModal">
+        <div class="lightbox-content-box">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Close Lightbox">&times;</button>
+            <img src="" alt="" class="lightbox-img" id="lightboxImg">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
     </div>
 
     <!-- Custom JavaScript -->

@@ -53,6 +53,12 @@
             </a>
 
             <nav class="nav-menu" id="nav-menu">
+                <div class="mobile-menu-header">
+                    <img src="assets/images/logo.png" alt="Omega Sunnidhi Hospital" class="mobile-menu-logo">
+                    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close Menu">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="about.html" class="nav-link">About Us</a></li>
@@ -63,12 +69,14 @@
                     <li><a href="faq.html" class="nav-link">FAQ</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
+                <div class="mobile-menu-footer">
+                    <a href="tel:+917947117570" class="mobile-emergency-call">
+                        <i class="fa-solid fa-phone-volume"></i> Emergency: +91 79471 17570
+                    </a>
+                </div>
             </nav>
 
             <div class="nav-cta-group">
-                <button class="btn btn-primary" id="openBookModalBtn">
-                    <i class="fa-solid fa-calendar-check"></i> Book Appointment
-                </button>
                 <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -114,10 +122,9 @@
                         <li><i class="fa-solid fa-check"></i> ECG & Chest X-Ray</li>
                         <li><i class="fa-solid fa-check"></i> Physician Consultation</li>
                     </ul>
-                    <button class="btn btn-secondary btn-block open-booking-trigger"
-                        data-package="Executive Master Health Checkup">
-                        Book Health Package
-                    </button>
+                    <a href="contact.html" class="btn btn-secondary btn-block">
+                        <i class="fa-solid fa-phone"></i> Enquire Package
+                    </a>
                 </div>
 
                 <!-- Package 2 (Featured) -->
@@ -135,10 +142,9 @@
                         <li><i class="fa-solid fa-check"></i> Serum Electrolytes</li>
                         <li><i class="fa-solid fa-check"></i> Senior Cardiologist Consultation</li>
                     </ul>
-                    <button class="btn btn-primary btn-block open-booking-trigger"
-                        data-package="Comprehensive Cardiac Package">
-                        Book Health Package
-                    </button>
+                    <a href="contact.html" class="btn btn-primary btn-block">
+                        <i class="fa-solid fa-phone"></i> Enquire Package
+                    </a>
                 </div>
 
                 <!-- Package 3 -->
@@ -154,10 +160,9 @@
                         <li><i class="fa-solid fa-check"></i> Urine Routine & Pap Smear</li>
                         <li><i class="fa-solid fa-check"></i> Senior Gynecologist Consultation</li>
                     </ul>
-                    <button class="btn btn-secondary btn-block open-booking-trigger"
-                        data-package="Women's Wellness Package">
-                        Book Health Package
-                    </button>
+                    <a href="contact.html" class="btn btn-secondary btn-block">
+                        <i class="fa-solid fa-phone"></i> Enquire Package
+                    </a>
                 </div>
             </div>
         </div>
@@ -218,89 +223,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Booking Modal -->
-    <div class="modal-backdrop" id="bookingModal">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h3><i class="fa-solid fa-calendar-check"></i> Book Consultation</h3>
-                <button class="modal-close" id="closeBookModalBtn">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="modalBookingForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="modalPatientName">Full Name *</label>
-                            <input type="text" id="modalPatientName" placeholder="Enter patient name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="modalPhone">Mobile Number *</label>
-                            <input type="tel" id="modalPhone" placeholder="10-digit mobile number" required pattern="[0-9]{10}">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="modalDepartment">Department / Speciality *</label>
-                            <select id="modalDepartment" required>
-                                <option value="" disabled selected>Select Department</option>
-                                <option value="Cardiology">Cardiology (Heart Care)</option>
-                                <option value="Orthopedics">Orthopedics & Joint Care</option>
-                                <option value="General Surgery">General & Laparoscopic Surgery</option>
-                                <option value="Gynecology">Gynecology & Obstetrics</option>
-                                <option value="Pediatrics">Pediatrics & Child Care</option>
-                                <option value="Radiology">Diagnostic Scanner / Imaging</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="modalDoctor">Preferred Doctor (Optional)</label>
-                            <select id="modalDoctor">
-                                <option value="Any Specialist Doctor">Any Available Specialist Doctor</option>
-                                <option value="Dr. K. Srinivas">Dr. K. Srinivas (Cardiology)</option>
-                                <option value="Dr. R. Rajender">Dr. R. Rajender (Orthopedics)</option>
-                                <option value="Dr. S. Prashanth">Dr. S. Prashanth (Surgery)</option>
-                                <option value="Dr. Lakshmi Sunnidhi">Dr. Lakshmi Sunnidhi (Gynecology)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="modalDate">Appointment Date *</label>
-                            <input type="date" id="modalDate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="modalTime">Time Slot *</label>
-                            <select id="modalTime" required>
-                                <option value="Morning Slot (10:00 AM - 01:00 PM)">Morning Slot (10:00 AM - 01:00 PM)</option>
-                                <option value="Evening Slot (05:00 PM - 08:30 PM)">Evening Slot (05:00 PM - 08:30 PM)</option>
-                                <option value="Emergency Care (Immediate)">Emergency Care (Immediate)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="modalNotes">Symptoms or Additional Details</label>
-                        <textarea id="modalNotes" rows="3" placeholder="Briefly describe health concern..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-block btn-lg">
-                        Submit & Confirm Booking <i class="fa-solid fa-check-circle"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div class="toast-notification" id="toastNotification">
-        <div class="toast-icon"><i class="fa-solid fa-circle-check"></i></div>
-        <div class="toast-content">
-            <h4 id="toastTitle">Appointment Confirmed!</h4>
-            <p id="toastMessage">Your reference ID is #OMG-8492. Our hospital desk will call you shortly.</p>
-        </div>
-        <button class="toast-close" id="toastClose">&times;</button>
-    </div>
 
     <!-- Floating Quick Call / WhatsApp Bar -->
     <div class="floating-contact">
